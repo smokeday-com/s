@@ -127,10 +127,10 @@
   },
   "transform_ruleset": {
     "result": {
-      "description": "Strip marketing tracking query parameters for edge cache hit rate (https://github.com/smokeday-com/s/issues/5)",
+      "description": "Strip marketing tracking query parameters for edge cache hit rate (https://github.com/smokeday-com/s/issues/5, https://github.com/smokeday-com/s/issues/6)",
       "id": "acc29f0696ff4a9784b6212ba7d06dda",
       "kind": "zone",
-      "last_updated": "2026-10-26T14:43:59.32133Z",
+      "last_updated": "2026-10-26T16:18:38.42922Z",
       "name": "default",
       "phase": "http_request_transform",
       "rules": [
@@ -139,20 +139,20 @@
           "action_parameters": {
             "uri": {
               "query": {
-                "value": ""
+                "expression": "remove_query_args(http.request.uri.query, \"gclid\", \"fbclid\", \"msclkid\", \"srsltid\", \"gbraid\", \"wbraid\", \"dclid\", \"utm_source\", \"utm_medium\", \"utm_campaign\", \"utm_term\", \"utm_content\", \"utm_id\", \"mc_cid\", \"mc_eid\", \"_ga\", \"_gl\", \"twclid\", \"ttclid\", \"yclid\", \"_bta_tid\", \"_bta_c\", \"trk_contact\", \"trk_msg\", \"trk_module\", \"trk_sid\", \"gdfms\", \"gdftrk\", \"gdffi\", \"_ke\", \"kx\", \"dm_i\", \"ef_id\", \"s_kwcid\")"
               }
             }
           },
-          "description": "Normalize Magento Marketing Tracking Query Parameters",
+          "description": "Normalize Magento Marketing Tracking Query Parameters (preserve pagination & filters)",
           "enabled": true,
-          "expression": "(http.host eq \"www.smokeday.com\") and (http.request.method in {\"GET\" \"HEAD\"}) and (http.request.uri.query contains \"gclid=\" or http.request.uri.query contains \"fbclid=\" or http.request.uri.query contains \"msclkid=\" or http.request.uri.query contains \"srsltid=\" or http.request.uri.query contains \"utm_\" or http.request.uri.query contains \"mc_cid=\" or http.request.uri.query contains \"mc_eid=\" or http.request.uri.query contains \"_ga=\" or http.request.uri.query contains \"_gl=\" or http.request.uri.query contains \"twclid=\" or http.request.uri.query contains \"ttclid=\" or http.request.uri.query contains \"yclid=\" or http.request.uri.query contains \"_bta_\" or http.request.uri.query contains \"trk_\" or http.request.uri.query contains \"gdf\" or http.request.uri.query contains \"_ke=\" or http.request.uri.query contains \"kx=\" or http.request.uri.query contains \"dm_i=\" or http.request.uri.query contains \"ef_id=\" or http.request.uri.query contains \"s_kwcid=\") and (not http.request.uri.query contains \"p=\") and (not http.request.uri.query contains \"product_list_\") and (not http.request.uri.query contains \"cat=\") and (not http.request.uri.query contains \"price=\") and (not http.request.uri.query contains \"q=\") and (not http.request.uri.query contains \"ea=\") and (not http.request.uri.query contains \"___store=\")",
+          "expression": "(http.host eq \"www.smokeday.com\") and (http.request.method in {\"GET\" \"HEAD\"}) and (http.request.uri.query contains \"gclid=\" or http.request.uri.query contains \"fbclid=\" or http.request.uri.query contains \"msclkid=\" or http.request.uri.query contains \"srsltid=\" or http.request.uri.query contains \"gbraid=\" or http.request.uri.query contains \"wbraid=\" or http.request.uri.query contains \"dclid=\" or http.request.uri.query contains \"utm_\" or http.request.uri.query contains \"mc_cid=\" or http.request.uri.query contains \"mc_eid=\" or http.request.uri.query contains \"_ga=\" or http.request.uri.query contains \"_gl=\" or http.request.uri.query contains \"twclid=\" or http.request.uri.query contains \"ttclid=\" or http.request.uri.query contains \"yclid=\" or http.request.uri.query contains \"_bta_\" or http.request.uri.query contains \"trk_\" or http.request.uri.query contains \"gdf\" or http.request.uri.query contains \"_ke=\" or http.request.uri.query contains \"kx=\" or http.request.uri.query contains \"dm_i=\" or http.request.uri.query contains \"ef_id=\" or http.request.uri.query contains \"s_kwcid=\")",
           "id": "f238900038874946b3b78a0ad1b5bc14",
-          "last_updated": "2026-10-26T14:43:59.32133Z",
+          "last_updated": "2026-10-26T16:18:38.42922Z",
           "ref": "f238900038874946b3b78a0ad1b5bc14",
-          "version": "1"
+          "version": "2"
         }
       ],
-      "version": "1"
+      "version": "2"
     },
     "success": true,
     "errors": [],
