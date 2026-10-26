@@ -9,3 +9,9 @@
 /chroot/home/a6676c35/.ssh
 /home/a6676c35/.my.cnf
 /home/a6676c35/.ssh
+# 2026-10-26 Dmitrii Fediuk https://github.com/dmitrii-fediuk
+# "Optimize Redis default (DB 0) and page_cache (DB 1) backend options in app/etc/env.php (igbinary, persistent connections, preload_keys)":
+# https://github.com/smokeday-com/s/issues/2
+/chroot/home/aabd032f/f3fa7e4327.nxcli.io/app/etc/env.php
+/chroot/home/a6676c35/310bcdbdef.nxcli.io/app/etc/env.php
+/home/a6676c35/310bcdbdef.nxcli.io/app/etc/env.php
