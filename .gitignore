@@ -2,3 +2,10 @@
 /_my
 /chroot/home/aabd032f/.my.cnf
 /chroot/home/aabd032f/.ssh
+# 2026-10-26 Dmitrii Fediuk https://github.com/dmitrii-fediuk
+# "Configure SSH public key authentication on the staging server (310bcdbdef.nxcli.io)":
+# https://github.com/smokeday-com/s/issues/1
+/chroot/home/a6676c35/.my.cnf
+/chroot/home/a6676c35/.ssh
+/home/a6676c35/.my.cnf
+/home/a6676c35/.ssh
