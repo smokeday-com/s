@@ -1,0 +1,128 @@
+{
+  "pagerules": {
+    "result": [
+      {
+        "id": "f4b23c16dd88fa81819e16faa2948afc",
+        "targets": [
+          {
+            "target": "url",
+            "constraint": {
+              "operator": "matches",
+              "value": "https://www.smokeday.com/index.php/api/auctane"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "cache_level",
+            "value": "bypass"
+          }
+        ],
+        "priority": 3,
+        "status": "active",
+        "created_on": "2023-02-23T18:49:20.000000Z",
+        "modified_on": "2023-02-23T18:49:20.000000Z"
+      },
+      {
+        "id": "90a0597bdb5b8b33b86b78887a21dd66",
+        "targets": [
+          {
+            "target": "url",
+            "constraint": {
+              "operator": "matches",
+              "value": "https://www.smokeday.com/wholesale/"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "security_level",
+            "value": "under_attack"
+          }
+        ],
+        "priority": 2,
+        "status": "active",
+        "created_on": "2022-12-15T18:35:21.000000Z",
+        "modified_on": "2022-12-15T18:35:21.000000Z"
+      },
+      {
+        "id": "083debaf0e643f2a80889aab57270501",
+        "targets": [
+          {
+            "target": "url",
+            "constraint": {
+              "operator": "matches",
+              "value": "www.smokeday.com/*"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "cache_level",
+            "value": "cache_everything"
+          },
+          {
+            "id": "automatic_https_rewrites",
+            "value": "on"
+          }
+        ],
+        "priority": 1,
+        "status": "disabled",
+        "created_on": "2022-07-01T15:43:22.000000Z",
+        "modified_on": "2026-10-26T12:41:20.000000Z"
+      }
+    ],
+    "success": true,
+    "errors": [],
+    "messages": []
+  },
+  "cache_ruleset": {
+    "result": {
+      "description": "Magento 2.4.7-p10 Session-Aware Edge Cache Rules (https://github.com/smokeday-com/s/issues/3)",
+      "id": "3937a48cd524427a93ce7e72f6449719",
+      "kind": "zone",
+      "last_updated": "2026-10-26T12:41:22.813806Z",
+      "name": "default",
+      "phase": "http_request_cache_settings",
+      "rules": [
+        {
+          "action": "set_cache_settings",
+          "action_parameters": {
+            "cache": false
+          },
+          "description": "Magento Bypass Dynamic, Admin, API & Session Cookies",
+          "enabled": true,
+          "expression": "(not http.request.method in {\"GET\" \"HEAD\"}) or (http.request.uri.path eq \"/index.php\") or (starts_with(http.request.uri.path, \"/admin\")) or (starts_with(http.request.uri.path, \"/startrek\")) or (starts_with(http.request.uri.path, \"/a79d3342ca_admin\")) or (starts_with(http.request.uri.path, \"/checkout\")) or (starts_with(http.request.uri.path, \"/customer\")) or (starts_with(http.request.uri.path, \"/cart\")) or (starts_with(http.request.uri.path, \"/sales\")) or (starts_with(http.request.uri.path, \"/wishlist\")) or (starts_with(http.request.uri.path, \"/rest\")) or (starts_with(http.request.uri.path, \"/graphql\")) or (starts_with(http.request.uri.path, \"/paypal\")) or (starts_with(http.request.uri.path, \"/braintree\")) or (starts_with(http.request.uri.path, \"/sezzle\")) or (starts_with(http.request.uri.path, \"/catalogsearch\")) or (starts_with(http.request.uri.path, \"/contact\")) or (starts_with(http.request.uri.path, \"/customform\")) or (starts_with(http.request.uri.path, \"/index.php/api\")) or (starts_with(http.request.uri.path, \"/wholesale\")) or (http.cookie contains \"PHPSESSID=\") or (http.cookie contains \"X-Magento-Vary=\") or (http.cookie contains \"private_content_version=\") or (http.cookie contains \"login_as_customer\")",
+          "id": "f9d40ab519d04b16b27c3b21f3d70e02",
+          "last_updated": "2026-10-26T12:41:22.813806Z",
+          "ref": "f9d40ab519d04b16b27c3b21f3d70e02",
+          "version": "1"
+        },
+        {
+          "action": "set_cache_settings",
+          "action_parameters": {
+            "browser_ttl": {
+              "mode": "respect_origin"
+            },
+            "cache": true,
+            "edge_ttl": {
+              "default": 3600,
+              "mode": "override_origin"
+            }
+          },
+          "description": "Magento Guest Storefront HTML Edge Cache",
+          "enabled": true,
+          "expression": "(http.host eq \"www.smokeday.com\") and (http.request.method in {\"GET\" \"HEAD\"}) and (http.request.uri.path eq \"/\" or ends_with(http.request.uri.path, \".html\")) and (not starts_with(http.request.uri.path, \"/admin\")) and (not starts_with(http.request.uri.path, \"/startrek\")) and (not starts_with(http.request.uri.path, \"/a79d3342ca_admin\")) and (not starts_with(http.request.uri.path, \"/checkout\")) and (not starts_with(http.request.uri.path, \"/customer\")) and (not starts_with(http.request.uri.path, \"/cart\")) and (not starts_with(http.request.uri.path, \"/sales\")) and (not starts_with(http.request.uri.path, \"/wishlist\")) and (not starts_with(http.request.uri.path, \"/rest\")) and (not starts_with(http.request.uri.path, \"/graphql\")) and (not starts_with(http.request.uri.path, \"/paypal\")) and (not starts_with(http.request.uri.path, \"/braintree\")) and (not starts_with(http.request.uri.path, \"/sezzle\")) and (not starts_with(http.request.uri.path, \"/catalogsearch\")) and (not starts_with(http.request.uri.path, \"/contact\")) and (not starts_with(http.request.uri.path, \"/customform\")) and (not http.cookie contains \"PHPSESSID=\") and (not http.cookie contains \"X-Magento-Vary=\") and (not http.cookie contains \"private_content_version=\") and (not http.cookie contains \"login_as_customer\")",
+          "id": "504f0f38723e4045ae830457ab834acc",
+          "last_updated": "2026-10-26T12:41:22.813806Z",
+          "ref": "504f0f38723e4045ae830457ab834acc",
+          "version": "1"
+        }
+      ],
+      "version": "1"
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+  }
+}
