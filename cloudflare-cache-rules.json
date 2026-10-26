@@ -78,10 +78,10 @@
   },
   "cache_ruleset": {
     "result": {
-      "description": "Magento 2.4.7-p10 Session-Aware Edge Cache Rules (https://github.com/smokeday-com/s/issues/3, https://github.com/smokeday-com/s/issues/5)",
+      "description": "Magento 2.4.7-p10 Session-Aware Edge Cache Rules (https://github.com/smokeday-com/s/issues/3, https://github.com/smokeday-com/s/issues/5, https://github.com/smokeday-com/s/issues/8)",
       "id": "3937a48cd524427a93ce7e72f6449719",
       "kind": "zone",
-      "last_updated": "2026-10-26T14:42:47.383435Z",
+      "last_updated": "2026-10-26T17:42:46.467017Z",
       "name": "default",
       "phase": "http_request_cache_settings",
       "rules": [
@@ -106,7 +106,7 @@
             },
             "cache": true,
             "edge_ttl": {
-              "default": 3600,
+              "default": 86400,
               "mode": "override_origin"
             }
           },
@@ -114,16 +114,29 @@
           "enabled": true,
           "expression": "(http.host eq \"www.smokeday.com\") and (http.request.method in {\"GET\" \"HEAD\"}) and (http.request.uri.path eq \"/\" or ends_with(http.request.uri.path, \".html\") or starts_with(http.request.uri.path, \"/blog\") or starts_with(http.request.uri.path, \"/free-stuff\") or http.request.uri.path in {\"/faqs\" \"/faq\" \"/about-online-head-shop\" \"/customer-service\" \"/shipping-policy\" \"/returns-refund-policy\" \"/terms-and-conditions\" \"/ships-from-usa\" \"/bongs\" \"/privacy-policy-cookie-restriction-mode\" \"/enable-cookies\"}) and (not starts_with(http.request.uri.path, \"/admin\")) and (not starts_with(http.request.uri.path, \"/startrek\")) and (not starts_with(http.request.uri.path, \"/a79d3342ca_admin\")) and (not starts_with(http.request.uri.path, \"/checkout\")) and (not starts_with(http.request.uri.path, \"/customer\")) and (not starts_with(http.request.uri.path, \"/cart\")) and (not starts_with(http.request.uri.path, \"/sales\")) and (not starts_with(http.request.uri.path, \"/wishlist\")) and (not starts_with(http.request.uri.path, \"/rest\")) and (not starts_with(http.request.uri.path, \"/graphql\")) and (not starts_with(http.request.uri.path, \"/paypal\")) and (not starts_with(http.request.uri.path, \"/braintree\")) and (not starts_with(http.request.uri.path, \"/sezzle\")) and (not starts_with(http.request.uri.path, \"/catalogsearch\")) and (not starts_with(http.request.uri.path, \"/contact\")) and (not starts_with(http.request.uri.path, \"/customform\")) and (not starts_with(http.request.uri.path, \"/wholesale\")) and (not http.cookie contains \"X-Magento-Vary=\") and (not http.cookie contains \"login_as_customer\")",
           "id": "504f0f38723e4045ae830457ab834acc",
-          "last_updated": "2026-10-26T14:42:47.383435Z",
+          "last_updated": "2026-10-26T17:42:46.467017Z",
           "ref": "504f0f38723e4045ae830457ab834acc",
-          "version": "2"
+          "version": "3"
         }
       ],
-      "version": "2"
+      "version": "3"
     },
     "success": true,
     "errors": [],
     "messages": []
+  },
+  "tiered_cache": {
+    "smart_topology": {
+      "result": {
+        "editable": true,
+        "id": "tiered_cache_smart_topology_enable",
+        "modified_on": "2026-10-26T17:42:45.500187Z",
+        "value": "on"
+      },
+      "success": true,
+      "errors": [],
+      "messages": []
+    }
   },
   "transform_ruleset": {
     "result": {
