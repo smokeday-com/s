@@ -170,5 +170,47 @@
     "success": true,
     "errors": [],
     "messages": []
+  },
+  "response_headers_transform_ruleset": {
+    "result": {
+      "description": "Strip legacy Varnish response headers on www.smokeday.com (https://github.com/smokeday-com/s/issues/11)",
+      "id": "2edf9f1357db4f79a66b0bfc93d26938",
+      "kind": "zone",
+      "last_updated": "2026-10-28T15:59:58.508592Z",
+      "name": "default",
+      "phase": "http_response_headers_transform",
+      "rules": [
+        {
+          "action": "rewrite",
+          "action_parameters": {
+            "headers": {
+              "x-cache": {
+                "operation": "remove"
+              },
+              "x-cache-via": {
+                "operation": "remove"
+              },
+              "x-varnish": {
+                "operation": "remove"
+              },
+              "x-varnish-age": {
+                "operation": "remove"
+              }
+            }
+          },
+          "description": "Remove legacy Varnish headers (x-cache, x-cache-via, x-varnish, x-varnish-age)",
+          "enabled": true,
+          "expression": "(http.host eq \"www.smokeday.com\")",
+          "id": "3b29a6812fd142c699f2f1620fc0d61d",
+          "last_updated": "2026-10-28T15:59:58.508592Z",
+          "ref": "3b29a6812fd142c699f2f1620fc0d61d",
+          "version": "1"
+        }
+      ],
+      "version": "1"
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
   }
 }
