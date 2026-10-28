@@ -78,13 +78,33 @@
   },
   "cache_ruleset": {
     "result": {
-      "description": "Magento 2.4.7-p10 Session-Aware Edge Cache Rules (https://github.com/smokeday-com/s/issues/3, https://github.com/smokeday-com/s/issues/5, https://github.com/smokeday-com/s/issues/8)",
+      "description": "Magento 2.4.7-p10 Session-Aware Edge Cache Rules (https://github.com/smokeday-com/s/issues/3, https://github.com/smokeday-com/s/issues/5, https://github.com/smokeday-com/s/issues/8, https://github.com/smokeday-com/s/issues/12)",
       "id": "3937a48cd524427a93ce7e72f6449719",
       "kind": "zone",
-      "last_updated": "2026-10-26T17:42:46.467017Z",
+      "last_updated": "2026-10-28T17:41:56.486529Z",
       "name": "default",
       "phase": "http_request_cache_settings",
       "rules": [
+        {
+          "action": "set_cache_settings",
+          "action_parameters": {
+            "browser_ttl": {
+              "mode": "respect_origin"
+            },
+            "cache": true,
+            "edge_ttl": {
+              "default": 2592000,
+              "mode": "override_origin"
+            }
+          },
+          "description": "Magento Static & Media Assets Edge Cache (ignore Vary/session cookies on /static/* and /media/*)",
+          "enabled": true,
+          "expression": "(http.host in {\"www.smokeday.com\" \"smokeday.com\"}) and (http.request.method in {\"GET\" \"HEAD\"}) and (starts_with(http.request.uri.path, \"/static/\") or starts_with(http.request.uri.path, \"/media/\") or http.request.uri.path in {\"/favicon.ico\" \"/robots.txt\"})",
+          "id": "e8d39889e8714e6f83d959c7b107b914",
+          "last_updated": "2026-10-28T17:41:56.486529Z",
+          "ref": "e8d39889e8714e6f83d959c7b107b914",
+          "version": "1"
+        },
         {
           "action": "set_cache_settings",
           "action_parameters": {
@@ -92,11 +112,11 @@
           },
           "description": "Magento Bypass Dynamic, Admin, API & Personalized Vary Cookies",
           "enabled": true,
-          "expression": "(not http.request.method in {\"GET\" \"HEAD\"}) or (http.request.uri.path eq \"/index.php\") or (starts_with(http.request.uri.path, \"/admin\")) or (starts_with(http.request.uri.path, \"/startrek\")) or (starts_with(http.request.uri.path, \"/a79d3342ca_admin\")) or (starts_with(http.request.uri.path, \"/checkout\")) or (starts_with(http.request.uri.path, \"/customer\")) or (starts_with(http.request.uri.path, \"/cart\")) or (starts_with(http.request.uri.path, \"/sales\")) or (starts_with(http.request.uri.path, \"/wishlist\")) or (starts_with(http.request.uri.path, \"/rest\")) or (starts_with(http.request.uri.path, \"/graphql\")) or (starts_with(http.request.uri.path, \"/paypal\")) or (starts_with(http.request.uri.path, \"/braintree\")) or (starts_with(http.request.uri.path, \"/sezzle\")) or (starts_with(http.request.uri.path, \"/catalogsearch\")) or (starts_with(http.request.uri.path, \"/contact\")) or (starts_with(http.request.uri.path, \"/customform\")) or (starts_with(http.request.uri.path, \"/index.php/api\")) or (starts_with(http.request.uri.path, \"/wholesale\")) or (http.cookie contains \"X-Magento-Vary=\") or (http.cookie contains \"login_as_customer\")",
+          "expression": "((not http.request.method in {\"GET\" \"HEAD\"}) or (http.request.uri.path eq \"/index.php\") or (starts_with(http.request.uri.path, \"/admin\")) or (starts_with(http.request.uri.path, \"/startrek\")) or (starts_with(http.request.uri.path, \"/a79d3342ca_admin\")) or (starts_with(http.request.uri.path, \"/checkout\")) or (starts_with(http.request.uri.path, \"/customer\")) or (starts_with(http.request.uri.path, \"/cart\")) or (starts_with(http.request.uri.path, \"/sales\")) or (starts_with(http.request.uri.path, \"/wishlist\")) or (starts_with(http.request.uri.path, \"/rest\")) or (starts_with(http.request.uri.path, \"/graphql\")) or (starts_with(http.request.uri.path, \"/paypal\")) or (starts_with(http.request.uri.path, \"/braintree\")) or (starts_with(http.request.uri.path, \"/sezzle\")) or (starts_with(http.request.uri.path, \"/catalogsearch\")) or (starts_with(http.request.uri.path, \"/contact\")) or (starts_with(http.request.uri.path, \"/customform\")) or (starts_with(http.request.uri.path, \"/index.php/api\")) or (starts_with(http.request.uri.path, \"/wholesale\")) or (http.cookie contains \"X-Magento-Vary=\") or (http.cookie contains \"login_as_customer\")) and (not starts_with(http.request.uri.path, \"/static/\")) and (not starts_with(http.request.uri.path, \"/media/\")) and (not http.request.uri.path in {\"/favicon.ico\" \"/robots.txt\"})",
           "id": "f9d40ab519d04b16b27c3b21f3d70e02",
-          "last_updated": "2026-10-26T14:42:47.383435Z",
+          "last_updated": "2026-10-28T17:41:56.486529Z",
           "ref": "f9d40ab519d04b16b27c3b21f3d70e02",
-          "version": "2"
+          "version": "3"
         },
         {
           "action": "set_cache_settings",
@@ -112,14 +132,14 @@
           },
           "description": "Magento Guest Storefront HTML Edge Cache",
           "enabled": true,
-          "expression": "(http.host eq \"www.smokeday.com\") and (http.request.method in {\"GET\" \"HEAD\"}) and (http.request.uri.path eq \"/\" or ends_with(http.request.uri.path, \".html\") or starts_with(http.request.uri.path, \"/blog\") or starts_with(http.request.uri.path, \"/free-stuff\") or http.request.uri.path in {\"/faqs\" \"/faq\" \"/about-online-head-shop\" \"/customer-service\" \"/shipping-policy\" \"/returns-refund-policy\" \"/terms-and-conditions\" \"/ships-from-usa\" \"/bongs\" \"/privacy-policy-cookie-restriction-mode\" \"/enable-cookies\"}) and (not starts_with(http.request.uri.path, \"/admin\")) and (not starts_with(http.request.uri.path, \"/startrek\")) and (not starts_with(http.request.uri.path, \"/a79d3342ca_admin\")) and (not starts_with(http.request.uri.path, \"/checkout\")) and (not starts_with(http.request.uri.path, \"/customer\")) and (not starts_with(http.request.uri.path, \"/cart\")) and (not starts_with(http.request.uri.path, \"/sales\")) and (not starts_with(http.request.uri.path, \"/wishlist\")) and (not starts_with(http.request.uri.path, \"/rest\")) and (not starts_with(http.request.uri.path, \"/graphql\")) and (not starts_with(http.request.uri.path, \"/paypal\")) and (not starts_with(http.request.uri.path, \"/braintree\")) and (not starts_with(http.request.uri.path, \"/sezzle\")) and (not starts_with(http.request.uri.path, \"/catalogsearch\")) and (not starts_with(http.request.uri.path, \"/contact\")) and (not starts_with(http.request.uri.path, \"/customform\")) and (not starts_with(http.request.uri.path, \"/wholesale\")) and (not http.cookie contains \"X-Magento-Vary=\") and (not http.cookie contains \"login_as_customer\")",
+          "expression": "(http.host eq \"www.smokeday.com\") and (http.request.method in {\"GET\" \"HEAD\"}) and (http.request.uri.path eq \"/\" or ends_with(http.request.uri.path, \".html\") or starts_with(http.request.uri.path, \"/blog\") or starts_with(http.request.uri.path, \"/free-stuff\") or http.request.uri.path in {\"/faqs\" \"/faq\" \"/about-online-head-shop\" \"/customer-service\" \"/shipping-policy\" \"/returns-refund-policy\" \"/terms-and-conditions\" \"/ships-from-usa\" \"/bongs\" \"/privacy-policy-cookie-restriction-mode\" \"/enable-cookies\"}) and (not starts_with(http.request.uri.path, \"/static/\")) and (not starts_with(http.request.uri.path, \"/media/\")) and (not starts_with(http.request.uri.path, \"/admin\")) and (not starts_with(http.request.uri.path, \"/startrek\")) and (not starts_with(http.request.uri.path, \"/a79d3342ca_admin\")) and (not starts_with(http.request.uri.path, \"/checkout\")) and (not starts_with(http.request.uri.path, \"/customer\")) and (not starts_with(http.request.uri.path, \"/cart\")) and (not starts_with(http.request.uri.path, \"/sales\")) and (not starts_with(http.request.uri.path, \"/wishlist\")) and (not starts_with(http.request.uri.path, \"/rest\")) and (not starts_with(http.request.uri.path, \"/graphql\")) and (not starts_with(http.request.uri.path, \"/paypal\")) and (not starts_with(http.request.uri.path, \"/braintree\")) and (not starts_with(http.request.uri.path, \"/sezzle\")) and (not starts_with(http.request.uri.path, \"/catalogsearch\")) and (not starts_with(http.request.uri.path, \"/contact\")) and (not starts_with(http.request.uri.path, \"/customform\")) and (not starts_with(http.request.uri.path, \"/wholesale\")) and (not http.cookie contains \"X-Magento-Vary=\") and (not http.cookie contains \"login_as_customer\")",
           "id": "504f0f38723e4045ae830457ab834acc",
-          "last_updated": "2026-10-26T17:42:46.467017Z",
+          "last_updated": "2026-10-28T17:41:56.486529Z",
           "ref": "504f0f38723e4045ae830457ab834acc",
-          "version": "3"
+          "version": "4"
         }
       ],
-      "version": "3"
+      "version": "4"
     },
     "success": true,
     "errors": [],
@@ -212,5 +232,23 @@
     "success": true,
     "errors": [],
     "messages": []
+  },
+  "snippets": {
+    "snippet": {
+      "created_on": "2026-10-28T17:44:21Z",
+      "modified_on": "2026-10-28T17:44:21Z",
+      "snippet_name": "nexcess_modsec_greylist_shard",
+      "main_module": "snippet.js"
+    },
+    "snippet_rules": [
+      {
+        "id": "ec146e4c7db54c39a6f697debe326fc3",
+        "description": "Shard X-Forwarded-For across 10,000 RFC 2544 IPs (198.18.100.100-198.18.199.199) to prevent Nexcess ModSecurity 429 greylisting (https://github.com/smokeday-com/s/issues/12)",
+        "enabled": true,
+        "last_updated": "2026-10-28T17:44:23.213399Z",
+        "expression": "(http.host in {\"www.smokeday.com\" \"smokeday.com\"})",
+        "snippet_name": "nexcess_modsec_greylist_shard"
+      }
+    ]
   }
 }
